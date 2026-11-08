@@ -1,1 +1,79 @@
-# antibiotic-resistance-confidence-intervals
+EUCAST and Antimicrobial Resistance in E. coli
+
+Project Overview
+
+This project is part of a three-project pharmaceutical statistics portfolio investigating antimicrobial resistance (AMR) in Escherichia coli (E. coli) in the context of EUCAST's standardisation of antibiotic susceptibility testing and interpretation.
+
+The portfolio explores resistance estimation, historical resistance comparisons and antibiotic treatment comparisons using confidence intervals, hypothesis testing and A/B testing.
+
+EUCAST provides standardised criteria for interpreting antibiotic susceptibility results. It does not directly reduce bacterial resistance; rather, it supports consistent measurement and surveillance of resistance.
+
+Project 1: Confidence Interval Analysis
+
+Objective
+
+To estimate the proportion of invasive E. coli isolates resistant to third-generation cephalosporins during the period following EARS-Net's adoption of EUCAST-only susceptibility interpretation.
+
+Research Question
+
+What proportion of invasive E. coli isolates reported through EARS-Net between 2020 and 2025 were resistant to third-generation cephalosporins?
+
+Dataset
+
+- Source: European Centre for Disease Prevention and Control (ECDC), EARS-Net
+- Organism: Escherichia coli
+- Antibiotic group: Third-generation cephalosporins
+- Study period: 2020–2025
+- Population: Reported invasive isolates
+
+Methodology
+
+- Data cleaning and preparation using Python.
+- Exploratory data analysis.
+- Calculation of the pooled resistance proportion.
+- Estimation of a 95% confidence interval using the normal approximation to the binomial proportion.
+- Visualisation of overall findings and annual resistance patterns using Power BI.
+
+Key Findings
+
+Metric| Result
+Total tested isolates| 986,328
+Resistant isolates| 136,656
+Estimated resistance| 13.86%
+95% confidence interval| 13.79%–13.92%
+
+Limitations
+
+- The data represent reported invasive isolates from participating EARS-Net countries, not all E. coli infections.
+- Country participation and population coverage may vary across years.
+- Changes in laboratory practices and surveillance coverage may influence reported resistance.
+- The conventional confidence interval may not fully account for clustering within countries and laboratories.
+
+Tools Used
+
+- Python
+- Pandas
+- NumPy
+- SciPy
+- Matplotlib / Seaborn
+- Power BI
+- Git and GitHub
+
+Repository Structure
+
+pharma-amr-confidence-intervals/
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+│   └── 01_amr_confidence_interval.ipynb
+├── visuals/
+├── requirements.txt
+└── README.md
+
+Data Source
+
+European Centre for Disease Prevention and Control (ECDC), European Antimicrobial Resistance Surveillance Network (EARS-Net).
+
+"Visit ECDC" (https://www.ecdc.europa.eu/en/antimicrobial-resistance/surveillance-and-disease-data/data-ecdc)
