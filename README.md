@@ -10,9 +10,7 @@ EUCAST provides standardised criteria for interpreting antibiotic susceptibility
 
 ---
 
-## Project 1: Confidence Interval Analysis
-
-### Objective
+## Project Objective
 
 To estimate the proportion of invasive *E. coli* isolates resistant to third-generation cephalosporins during the period following EARS-Net's adoption of EUCAST-only susceptibility interpretation.
 
@@ -44,6 +42,19 @@ What proportion of invasive *E. coli* isolates reported through EARS-Net between
 | Resistant isolates | 136,656 |
 | Estimated resistance | 13.86% |
 | 95% confidence interval | 13.79%–13.92% |
+
+
+### Conclusion
+
+The analysis estimated that 13.86% of invasive *E Coli* isolates reported through the EARS-Net between 2020 and 2025 were resisitant to third-generation cephalosporins. the 95% confidence interval ranged from 13.79% to 13.92%. These findings indicate that resistance remains an important concern requiring continued surveillance.
+
+
+## Recommendations
+
+1. Health Institutions: Continue monitoring third-generation cephalosporin resistance to support informed antibiotic selection.
+2. Public Health Authorities: Strenghten antimicrobial resistance surveillance and maintain consistent laboratory reporting standards.
+3. Future Researchers: Investigate resistance patterns across individual countries and examine change over time, accounting for difference in surveillance coverage.
+
 
 ### Limitations
 
