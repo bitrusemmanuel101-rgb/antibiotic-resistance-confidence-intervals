@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is part of a three-project pharmaceutical statistics portfolio investigating antimicrobial resistance (AMR) in *Escherichia coli* (*E. coli*) in the context of EUCAST's standardisation of antibiotic susceptibility testing and interpretation.
+This project is focused on investigating antimicrobial resistance (AMR) in *Escherichia coli* (*E. coli*) in the context of EUCAST's standardisation of antibiotic susceptibility testing and interpretation.
 
 The portfolio explores resistance estimation, historical resistance comparisons and antibiotic treatment comparisons using confidence intervals, hypothesis testing and A/B testing.
 
@@ -51,9 +51,9 @@ The analysis estimated that 13.86% of invasive *E Coli* isolates reported throug
 
 ## Recommendations
 
-1. Health Institutions: Continue monitoring third-generation cephalosporin resistance to support informed antibiotic selection.
-2. Public Health Authorities: Strenghten antimicrobial resistance surveillance and maintain consistent laboratory reporting standards.
-3. Future Researchers: Investigate resistance patterns across individual countries and examine change over time, accounting for difference in surveillance coverage.
+1. **Health Institutions:** Continue monitoring third-generation cephalosporin resistance to support informed antibiotic selection.
+2. **Public Health Authorities:** Strenghten antimicrobial resistance surveillance and maintain consistent laboratory reporting standards.
+3. **Future Researchers:** Investigate resistance patterns across individual countries, pre and post the EUCAST-only susceptibility interpretation, accounting for difference in surveillance coverage.
 
 
 ### Limitations
