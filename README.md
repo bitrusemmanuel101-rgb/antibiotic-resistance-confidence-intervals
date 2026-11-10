@@ -1,100 +1,144 @@
-# EUCAST and Antimicrobial Resistance in *E. coli*
+# E. coli Resistance to Third-Generation Cephalosporins: Confidence Interval Analysis of EARS-Net Data, 2013 to 2025
 
-## Project Overview
 
-This project is part of a three-project pharmaceutical statistics portfolio investigating antimicrobial resistance (AMR) in *Escherichia coli* (*E. coli*) in the context of EUCAST's standardisation of antibiotic susceptibility testing and interpretation.
+*Last updated: November 2026*
 
-The portfolio explores resistance estimation, historical resistance comparisons and antibiotic treatment comparisons using confidence intervals, hypothesis testing and A/B testing.
 
-EUCAST provides standardised criteria for interpreting antibiotic susceptibility results. It does not directly reduce bacterial resistance; rather, it supports consistent measurement and surveillance of resistance.
 
 ---
 
-## Project Objective
+## Summary
 
-To estimate the proportion of invasive *E. coli* isolates resistant to third-generation cephalosporins during the period following EARS-Net's adoption of EUCAST-only susceptibility interpretation.
+This project asks what share of invasive *E. coli* isolates reported to EARS-Net were resistant to third-generation cephalosporins, and how that share differed before and after EARS-Net moved to EUCAST-only interpretation. In 2020 to 2025, 13.86% of 986,328 tested isolates were resistant (95% CI 13.79% to 13.92%), which is 1.83 percentage points higher than in 2013 to 2018. (95% CI for the difference 1.73 to 1.93). That is about 1 in 7 tested isolates, so these antibiotics cannot be assumed to work for every patient, but the data cover reported isolates from participating countries and cannot show that the change in interpretation caused the rise.
+The data do not show a step change when EARS-Net moved to EUCAST-only interpretation in 2019, and they cannot show what caused the rise.
 
-### Research Question
+---
 
-What proportion of invasive *E. coli* isolates reported through EARS-Net between 2020 and 2025 were resistant to third-generation cephalosporins?
+## Background
 
-### Dataset
+Antimicrobial resistance (AMR) is a growing public health problem because it reduces the effectiveness of antibiotics. EUCAST publishes standardised criteria for interpreting antibiotic susceptibility tests. It does not reduce resistance itself. It makes measurement and surveillance more consistent across laboratories.
 
-- **Source:** European Centre for Disease Prevention and Control (ECDC), EARS-Net
-- **Organism:** *Escherichia coli*
-- **Antibiotic group:** Third-generation cephalosporins
-- **Study period:** 2020–2025
-- **Population:** Reported invasive isolates
+The European Antimicrobial Resistance Surveillance Network (EARS-Net), run by the European Centre for Disease Prevention and Control (ECDC), collects resistance data on invasive isolates from participating countries. Invasive isolates are bacteria found in normally sterile sites such as blood.
 
-### Methodology
+---
 
-- Data cleaning and preparation using Python.
-- Exploratory data analysis.
-- Calculation of the pooled resistance proportion.
-- Estimation of a 95% confidence interval using the normal approximation to the binomial proportion.
-- Visualisation of overall findings and annual resistance patterns using Power BI.
+## Research Questions
 
-### Key Findings
+1. What proportion of invasive E. coli isolates reported through EARS-Net in 2020 to 2025 were resistant to third-generation cephalosporins?
+2. How does that compare with 2013 to 2018, and how did the rate move year by year?
 
-| Metric | Result |
-| --- | --- |
-| Total tested isolates | 986,328 |
-| Resistant isolates | 136,656 |
-| Estimated resistance | 13.86% |
-| 95% confidence interval | 13.79%–13.92% |
+---
 
+## Dataset
 
-### Conclusion
+| Item | Detail |
+|---|---|
+| Source | ECDC, EARS-Net surveillance data |
+| Organism | *Escherichia coli* |
+| Antibiotic group | Third-generation cephalosporins |
+| Population | Reported invasive isolates |
+| Pre period | 2013 to 2018 |
+| Post period | 2020 to 2025 |
+| Excluded | 2019, the year of the changeover to EUCAST-only interpretation |
 
-The analysis estimated that 13.86% of invasive *E Coli* isolates reported through the EARS-Net between 2020 and 2025 were resisitant to third-generation cephalosporins. the 95% confidence interval ranged from 13.79% to 13.92%. These findings indicate that resistance remains an important concern requiring continued surveillance.
+---
 
+## Methodology
+
+1. **Cleaning and preparation** in Python (pandas): filtered the raw ECDC file to the organism, antibiotic group and study periods above.
+2. **Exploratory data analysis** of tested and resistant isolate counts by year.
+3. **Resistance proportion and confidence interval** for each period, using the normal approximation to the binomial proportion:
+
+```
+p  = resistant / tested
+SE = sqrt( p * (1 - p) / n )
+95% CI = p ± 1.96 * SE
+```
+
+4. **Difference between periods.** The two periods are treated as independent samples, so their standard errors combine:
+
+```
+SE_diff = sqrt( SE_pre^2 + SE_post^2 )
+95% CI  = (p_post - p_pre) ± 1.96 * SE_diff
+```
+
+5. **Visualisation** in Power BI: the pooled interval, the yearly resistance rate, and a region filter.
+
+---
+
+## Results
+
+| Period | Resistant | Tested | Resistance | 95% CI |
+|---|---:|---:|---:|---|
+| Pre (2013 to 2018) | 81,262 | 675,790 | 12.02% | 11.95% to 12.10% |
+| Post (2020 to 2025) | 136,656 | 986,328 | 13.86% | 13.79% to 13.92% |
+| **Difference (post minus pre)** | | | **+1.83 points** | **1.73 to 1.93** |
+
+### Year by year
+
+| Year | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 |
+|---|---:|---:|---:|---:|---:|---:|
+| Resistance | 12.66% | 11.91% | 12.68% | 14.43% | 14.69% | 15.70% |
+
+### What the results show
+
+- The difference between periods is statistically distinguishable from zero. The interval does not include 0.
+- The yearly pattern matters more than the pooled figure. 2020 to 2022 sit within about 0.7 points of the pre-period rate. The rise appears in 2023 to 2025.
+- Because the increase is concentrated in the last three years, the data do not support a simple "before and after EUCAST-only adoption" story.
+- Tested isolates rose from 675,790 to 986,328 between two periods of equal length (six years each). This suggests reporting coverage changed, which this analysis did not investigate.
+
+---
+
+## Conclusion
+
+Resistance to third-generation cephalosporins in invasive E. coli was higher in 2020 to 2025 than in 2013 to 2018, and the rise accelerated in the final three years. The pooled estimate is precise, but it describes no single year, so the yearly series is the more useful result. The analysis shows that resistance rose. It does not show why.
 
 ## Recommendations
 
-1. Health Institutions: Continue monitoring third-generation cephalosporin resistance to support informed antibiotic selection.
-2. Public Health Authorities: Strenghten antimicrobial resistance surveillance and maintain consistent laboratory reporting standards.
-3. Future Researchers: Investigate resistance patterns across individual countries and examine change over time, accounting for difference in surveillance coverage.
-
-
-### Limitations
-
-- The data represent reported invasive isolates from participating EARS-Net countries, not all *E. coli* infections.
-- Country participation and population coverage may vary across years.
-- Changes in laboratory practices and surveillance coverage may influence reported resistance.
-- The conventional confidence interval may not fully account for clustering within countries and laboratories.
+- **Researchers:** analyse the trend by country, using methods that account for clustering within countries and laboratories, and add confidence intervals to each year.
+- **Surveillance programmes:** follow the 2023 to 2025 increase closely, and publish coverage information (countries and laboratories reporting) alongside resistance rates so changes in reporting can be separated from changes in resistance.
 
 ---
 
-## Tools Used
+## Limitations
 
-- Python
-- Pandas
-- NumPy
-- SciPy
-- Matplotlib / Seaborn
-- Power BI
-- Git and GitHub
+- The data are reported invasive isolates from participating EARS-Net countries. They do not represent all E. coli infections.
+- Country participation and laboratory coverage vary across years, which can change the reported rate without any change in true resistance.
+- The comparison is observational and not causal. The interpretation rules changed between the two periods, so the comparison reflects the measurement system as well as the bacteria.
+- The confidence intervals assume every isolate is an independent random draw. Isolates cluster within countries and laboratories, so the true uncertainty is wider than the intervals shown.
+- Pooling six years into one estimate hides the year-to-year pattern. Yearly rates are reported without confidence intervals so far.
+
+---
+
+## Tools
+
+Python (pandas, NumPy, SciPy, Matplotlib, Seaborn), Power BI, Git and GitHub.
 
 ## Repository Structure
 
-```text
-pharma-amr-confidence-intervals/
-│
+```
+ecoli-cephalosporin-resistance-confidence-intervals/
 ├── data/
-│   ├── raw/
-│   └── processed/
-│
+│   ├── raw/             ECDC source file (not committed if large)
+│   └── processed/       Cleaned analysis file
 ├── notebooks/
-│   └── 01_amr_confidence_interval.ipynb
-│
+│   └── amr_confidence_interval.ipynb
 ├── visuals/
-│
+│   └── Executive Summary.png
 ├── requirements.txt
 └── README.md
 ```
 
+## How to Run
+
+1. Install the requirements: `pip install -r requirements.txt`
+2. Download the EARS-Net data from the ECDC link below and place the CSV in `data/raw/`.
+3. Open `notebooks/amr_confidence_interval.ipynb` and choose **Run All**.
+
 ## Data Source
 
-European Centre for Disease Prevention and Control (ECDC), European Antimicrobial Resistance Surveillance Network (EARS-Net).
+European Centre for Disease Prevention and Control (ECDC), European Antimicrobial Resistance Surveillance Network (EARS-Net): https://www.ecdc.europa.eu/en/antimicrobial-resistance/surveillance-and-disease-data/data-ecdc
 
-[Visit ECDC – Antimicrobial Resistance Surveillance Data](https://www.ecdc.europa.eu/en/antimicrobial-resistance/surveillance-and-disease-data/data-ecdc)
+---
+
+*Author: Emmanuel Bitrus*
